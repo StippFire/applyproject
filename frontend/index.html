@@ -1,0 +1,33 @@
+<html>
+    <script>
+        function sendRequest() {
+            console.log('test')
+
+            const data = { 
+                bewerbungstext: document.getElementById('bewerbungstext').value,
+                datum: '',
+                test: ''
+            };
+
+            fetch('http://localhost:6969/invoices', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+            console.log('Success:', data);
+            document.getElementById('result').innerHTML = data;
+            })
+            .catch((error) => {
+            console.error('Error:', error);
+            });
+        }
+    </script>
+    <div style="width: 100px; height:100px; background-color:red;" onclick="sendRequest()">Click mich</div>
+    <input type="text" id="bewerbungstext" name="lname">
+
+    <div id="result"></div>
+</html>
